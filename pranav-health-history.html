@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VitaWell | Pranav Health History</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pranav-history.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="health-default.html">VitaWell</a>
+      <a class="top-link" href="health-default.html">Back to dashboard</a>
+    </header>
+    <section class="dashboard-intro">
+      <p class="eyebrow">PERSONAL WELLBEING RECORD</p>
+      <h1><span id="historyName">Pranav</span> health history</h1>
+      <p>Review the activity saved on this device and use it to choose one healthy next step.</p>
+    </section>
+    <section class="history-score card">
+      <div><p class="eyebrow">TODAY'S WELLBEING SCORE</p><strong id="historyScore">0</strong><span>/100</span><p id="historyMessage">Start with a small activity to build your record.</p></div>
+      <div class="history-score-bars" aria-label="Daily health progress">
+        <div><span>Movement</span><i><em id="movementBar"></em></i><b id="movementValue">0%</b></div>
+        <div><span>Hydration</span><i><em id="hydrationBar"></em></i><b id="hydrationValue">0%</b></div>
+        <div><span>Check-in</span><i><em id="checkinBar"></em></i><b id="checkinValue">0%</b></div>
+      </div>
+    </section>
+    <section class="report-grid history-summary">
+      <article class="report-stat card"><span>STEPS LOGGED</span><strong id="historySteps">0</strong><small id="historyGoal">Goal: 6,000</small></article>
+      <article class="report-stat card"><span>WATER GLASSES</span><strong id="historyWater">0</strong><small>Daily goal: 8 glasses</small></article>
+      <article class="report-stat card"><span>LATEST MOOD</span><strong id="historyMood">—</strong><small id="historyEnergy">No check-in saved</small></article>
+    </section>
+    <section class="history-card card">
+      <div class="section-title"><p class="eyebrow">SAVED ACTIVITY</p><h2>Your latest health history</h2></div>
+      <div class="history-list" id="historyList"></div>
+    </section>
+    <section class="assessment card history-next">
+      <div><p class="eyebrow">NEXT HEALTHY STEP</p><h2 id="historyTipTitle">Build a gentle routine</h2><p id="historyTip">Drink a glass of water, take a short walk, or complete a wellbeing check-in.</p></div>
+      <a class="btn primary" href="daily-check.html">Daily check-in</a>
+    </section>
+  </main>
+  <script src="js/pranav-history.js"></script>
+</body>
+</html>
