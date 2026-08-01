@@ -1,1 +1,26 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>VitaWell | Settings</title><link rel="stylesheet" href="css/style.css"></head><body><main class="shell narrow"><header class="topbar"><a class="brand" href="health-default.html">Back to VitaWell</a><span class="step">YOUR ACCOUNT</span></header><section class="dashboard-intro"><p class="eyebrow">PREFERENCES</p><h1>Settings</h1><p>Choose the reminders and activity target that feel useful for you.</p></section><form id="settingsForm" class="settings-form card"><label>Daily step goal<input id="settingsGoal" type="number" min="1000" max="50000" step="500" value="6000"></label><label class="switch-row">Water reminders<input id="settingsWater" type="checkbox" checked><span class="switch"></span></label><label class="switch-row">Gentle wellness tips<input id="settingsTips" type="checkbox" checked><span class="switch"></span></label><button class="btn primary" type="submit">Save preferences</button></form><button id="resetApp" class="danger-button">Reset all VitaWell data</button></main><script src="js/features.js"></script></body></html>
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>VitaWell | Settings</title><link rel="stylesheet" href="css/style.css"></head><body><main class="shell narrow"><header class="topbar"><a class="brand" href="health-default.html">Back to VitaWell</a><span class="step">YOUR ACCOUNT</span></header><section class="dashboard-intro"><p class="eyebrow">PREFERENCES</p><h1>Settings</h1><p>Choose the reminders and activity target that feel useful for you.</p></section><form id="settingsForm" class="settings-form card"><label>Daily step goal<input id="settingsGoal" type="number" min="1000" max="50000" step="500" value="6000"></label><label class="switch-row">Water reminders<input id="settingsWater" type="checkbox" checked><span class="switch"></span></label><label class="switch-row">Gentle wellness tips<input id="settingsTips" type="checkbox" checked><span class="switch"></span></label><button class="btn primary" type="submit">Save preferences</button></form><button id="resetApp" class="danger-button">Reset all VitaWell data</button></main><script src="js/features.js"></script><script>
+(()=>{
+  const el=id=>document.getElementById(id);
+  const read=(key,fallback)=>{try{return JSON.parse(localStorage.getItem(key))||fallback}catch(_){return fallback}};
+  const write=(key,value)=>localStorage.setItem(key,JSON.stringify(value));
+  const form=el('settingsForm'),reset=el('resetApp');
+  if(form){
+    const settings=read('vwSettings',{goal:6000,water:true,tips:true});
+    el('settingsGoal').value=settings.goal;
+    el('settingsWater').checked=settings.water;
+    el('settingsTips').checked=settings.tips;
+    form.addEventListener('submit',event=>{
+      event.preventDefault();
+      write('vwSettings',{goal:+el('settingsGoal').value,water:el('settingsWater').checked,tips:el('settingsTips').checked});
+      alert('Preferences saved.');
+    });
+  }
+  if(reset) reset.addEventListener('click',()=>{
+    if(confirm('Remove your VitaWell profile, preferences, and logged activity?')){
+      Object.keys(localStorage).filter(key=>key.startsWith('vw')||key.startsWith('vitawell')).forEach(key=>localStorage.removeItem(key));
+      location.href='index.html';
+    }
+  });
+})();
+</script></body></html>
+
